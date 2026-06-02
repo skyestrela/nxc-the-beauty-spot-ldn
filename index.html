@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velour Beauty Studio | Beauty Salon in London</title>
+<style>
+  /* LAYOUT F: Asymmetric two-tier header + masonry-style service tiles + floating quote blocks + soft gradient CTA */
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--rose:#c4707e;--blush:#f5e1e4;--cream:#fdf8f4;--charcoal:#2d2a2e;--gold:#b8945e;--lavender:#d8c8e0}
+  body{font-family:'Cormorant Garamond','Georgia',serif;color:var(--charcoal);background:var(--cream)}
+
+  .top-info{background:var(--charcoal);padding:.5rem 2rem;display:flex;justify-content:space-between;align-items:center;font-family:'Segoe UI',sans-serif;font-size:.75rem;color:#bbb;letter-spacing:1px}
+  .top-info a{color:var(--gold);text-decoration:none;font-weight:600}
+
+  .header-main{display:flex;min-height:70vh}
+  .header-left{flex:1.2;background:linear-gradient(160deg,var(--rose),#a85868);position:relative;display:flex;align-items:flex-end;padding:0;overflow:hidden}
+  .header-left .overlay-text{position:absolute;bottom:3rem;left:3rem;color:#fff;z-index:2}
+  .header-left .overlay-text .pre{font-size:.7rem;text-transform:uppercase;letter-spacing:4px;opacity:.8;margin-bottom:.5rem;font-family:'Segoe UI',sans-serif}
+  .header-left .overlay-text h1{font-size:4rem;line-height:1;font-weight:400;margin-bottom:.5rem}
+  .header-left .overlay-text h1 em{font-style:italic;display:block;font-weight:300}
+  .header-left .decor{position:absolute;top:2rem;right:2rem;width:120px;height:120px;border:2px solid rgba(255,255,255,.2);border-radius:50%}
+  .header-right{flex:.8;background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;position:relative}
+  .header-right::before{content:'';position:absolute;left:0;top:15%;bottom:15%;width:3px;background:var(--gold)}
+  .header-right p{font-size:1.2rem;line-height:1.8;color:#666;margin-bottom:1.5rem}
+  .header-right .btn-rose{display:inline-block;background:var(--rose);color:#fff;padding:1rem 2.5rem;text-decoration:none;font-family:'Segoe UI',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:2px;font-size:.8rem;transition:all .3s;border:none;cursor:pointer}
+  .header-right .btn-rose:hover{background:#a85868;transform:translateY(-2px)}
+
+  .quote-float{background:var(--blush);padding:3rem 5rem;display:flex;align-items:center;gap:3rem;position:relative}
+  .quote-float .q-mark{font-size:6rem;color:var(--rose);opacity:.3;font-family:Georgia,serif;line-height:1}
+  .quote-float blockquote{font-size:1.3rem;font-style:italic;line-height:1.7;color:var(--charcoal);max-width:700px}
+  .quote-float blockquote cite{display:block;margin-top:1rem;font-style:normal;font-family:'Segoe UI',sans-serif;font-size:.8rem;color:var(--rose);letter-spacing:1px;text-transform:uppercase}
+
+  .services-section{padding:5rem 2rem;background:var(--cream)}
+  .section-header{text-align:center;margin-bottom:3rem}
+  .section-header .eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:4px;color:var(--rose);display:block;margin-bottom:.5rem;font-family:'Segoe UI',sans-serif}
+  .section-header h2{font-size:2.5rem;font-weight:400}
+  .section-header h2 em{color:var(--rose);font-style:italic}
+
+  .masonry{max-width:1100px;margin:0 auto;columns:3;column-gap:1.5rem}
+  .tile{break-inside:avoid;margin-bottom:1.5rem;background:#fff;border-radius:6px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.06)}
+  .tile-img{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+  .tile-img.img-rose{background:var(--blush)}
+  .tile-img.img-gold{background:linear-gradient(135deg,#f5e1e4,#ede0d4)}
+  .tile-img.img-lav{background:var(--lavender)}
+  .tile-img.img-dark{background:var(--charcoal);color:var(--gold)}
+  .tile-body{padding:1.5rem}
+  .tile-body h3{font-size:1.15rem;margin-bottom:.5rem;color:var(--charcoal)}
+  .tile-body p{font-size:.9rem;color:#777;line-height:1.6;font-family:'Segoe UI',sans-serif}
+  .tile-body .price{display:inline-block;margin-top:.8rem;color:var(--rose);font-family:'Segoe UI',sans-serif;font-weight:700;font-size:.85rem}
+
+  .tall-tile{break-inside:avoid;margin-bottom:1.5rem;background:#fff;border-radius:6px;overflow:hidden;transition:transform .3s}
+  .tall-tile:hover{transform:translateY(-4px)}
+  .tall-tile .tall-img{height:250px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,var(--rose),var(--lavender));color:#fff}
+
+  .experience-section{background:var(--charcoal);padding:5rem 2rem;color:#fff;position:relative;overflow:hidden}
+  .experience-section::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(196,112,126,.1)}
+  .exp-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .exp-text h2{font-size:2.2rem;font-weight:400;margin-bottom:1.5rem}
+  .exp-text h2 em{color:var(--rose);font-style:italic}
+  .exp-text p{font-family:'Segoe UI',sans-serif;line-height:1.8;color:#bbb;font-size:.95rem;margin-bottom:1rem}
+  .exp-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .exp-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:1.5rem;text-align:center;border-radius:4px}
+  .exp-card .num{font-size:2rem;color:var(--gold);font-weight:700;display:block}
+  .exp-card .what{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-top:.3rem;font-family:'Segoe UI',sans-serif}
+
+  .soft-cta{background:linear-gradient(135deg,var(--rose),#d4949e,var(--lavender));padding:5rem 2rem;text-align:center}
+  .soft-cta h2{font-size:2.5rem;color:#fff;font-weight:400;margin-bottom:.5rem}
+  .soft-cta h2 em{font-style:italic}
+  .soft-cta p{color:rgba(255,255,255,.85);font-size:1.1rem;margin-bottom:2rem}
+  .soft-cta .btn-white{display:inline-block;background:#fff;color:var(--charcoal);padding:1.2rem 3rem;text-decoration:none;font-family:'Segoe UI',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:.85rem;border-radius:50px;transition:transform .3s}
+  .soft-cta .btn-white:hover{transform:scale(1.05)}
+
+  .hours-bar{background:var(--cream);padding:3rem 2rem;text-align:center;font-family:'Segoe UI',sans-serif}
+  .hours-bar h3{font-size:1rem;text-transform:uppercase;letter-spacing:3px;color:var(--rose);margin-bottom:1.5rem}
+  .hours-grid{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;font-size:.85rem;color:#666}
+  .hours-grid strong{color:var(--charcoal)}
+
+  footer{background:var(--charcoal);padding:2.5rem;text-align:center;font-family:'Segoe UI',sans-serif}
+  footer p{color:#777;font-size:.8rem;line-height:1.8}
+  footer a{color:var(--gold);text-decoration:none}
+
+  @media(max-width:768px){
+    .header-main{flex-direction:column}
+    .header-left{min-height:auto;padding:4rem 2rem}
+    .header-left .overlay-text{position:relative;bottom:auto;left:auto}
+    .header-left .overlay-text h1{font-size:2.8rem}
+    .header-right{padding:3rem 2rem}
+    .header-right::before{display:none}
+    .masonry{columns:1}
+    .exp-grid{grid-template-columns:1fr}
+    .quote-float{flex-direction:column;padding:2rem;text-align:center}
+    .quote-float .q-mark{font-size:3rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-info">
+  <span>Beauty &bull; Nails &bull; Skin &bull; London</span>
+  <a href="tel:02077727475">020 7772 7475</a>
+</div>
+
+<section class="header-main">
+  <div class="header-left">
+    <div class="decor"></div>
+    <div class="overlay-text">
+      <div class="pre">Beauty Salon</div>
+      <h1>Velour<em>Studio</em></h1>
+    </div>
+  </div>
+  <div class="header-right">
+    <p>Luxury beauty treatments delivered with care, precision, and a genuine love for making you feel extraordinary. From facials to full transformations — this is where self-care becomes an art form.</p>
+    <a href="tel:02077727475" class="btn-rose">Book Your Appointment</a>
+  </div>
+</section>
+
+<div class="quote-float">
+  <div class="q-mark">&ldquo;</div>
+  <blockquote>
+    I've tried dozens of salons across London and Velour is the only one I keep coming back to. The attention to detail is unmatched — I always leave feeling like the best version of myself.
+    <cite>&mdash; Jessica M., Regular Client</cite>
+  </blockquote>
+</div>
+
+<section class="services-section" id="services">
+  <div class="section-header">
+    <span class="eyebrow">Our Treatments</span>
+    <h2>A Ritual for <em>Every Need</em></h2>
+  </div>
+  <div class="masonry">
+    <div class="tile">
+      <div class="tile-img img-rose">&#128131;</div>
+      <div class="tile-body">
+        <h3>Signature Facial</h3>
+        <p>Deep-cleansing, exfoliating facial tailored to your skin type. Includes shoulder massage and LED light therapy.</p>
+        <span class="price">From &pound;75</span>
+      </div>
+    </div>
+    <div class="tall-tile">
+      <div class="tall-img">&#10024;</div>
+    </div>
+    <div class="tile">
+      <div class="tile-img img-gold">&#127775;</div>
+      <div class="tile-body">
+        <h3>Lash Lift & Tint</h3>
+        <p>Wake up with perfect lashes every morning. Keratin-infused lift with a custom tint for a natural-but-better look.</p>
+        <span class="price">From &pound;45</span>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-img img-lav">&#128141;</div>
+      <div class="tile-body">
+        <h3>Gel Manicure</h3>
+        <p>Flawless colour that lasts 2-3 weeks. Shape, cuticle care, gel polish, and hand massage included.</p>
+        <span class="price">From &pound;38</span>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-img img-dark">&#127808;</div>
+      <div class="tile-body">
+        <h3>Full Body Massage</h3>
+        <p>Choose from Swedish, deep tissue, or hot stone. 60 minutes of pure relaxation in our calm treatment room.</p>
+        <span class="price">From &pound;65</span>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-img img-rose">&#128132;</div>
+      <div class="tile-body">
+        <h3>Brow Sculpt</h3>
+        <p>Expertly shaped brows using a combination of tinting, waxing, and threading. Frames your face beautifully.</p>
+        <span class="price">From &pound;28</span>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-img img-gold">&#127800;</div>
+      <div class="tile-body">
+        <h3>Aromatherapy Facial</h3>
+        <p>Essential oil-infused treatment to calm, hydrate, and rejuvenate. A full sensory escape for tired skin.</p>
+        <span class="price">From &pound;85</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience-section">
+  <div class="exp-grid">
+    <div class="exp-text">
+      <h2>The Velour <em>Experience</em></h2>
+      <p>Every visit to Velour is designed to be more than a treatment — it's a moment of calm in a busy city. Our boutique salon in London blends skilled artistry with a warm, welcoming atmosphere.</p>
+      <p>We exclusively use premium products from brands like Dermalogica, CND, and LashPerfect. No shortcuts, no compromises — just genuine care delivered by therapists who are passionate about their craft.</p>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <span class="num">10+</span>
+        <span class="what">Years Experience</span>
+      </div>
+      <div class="exp-card">
+        <span class="num">5,000+</span>
+        <span class="what">Happy Clients</span>
+      </div>
+      <div class="exp-card">
+        <span class="num">4.8</span>
+        <span class="what">Google Rating</span>
+      </div>
+      <div class="exp-card">
+        <span class="num">6</span>
+        <span class="what">Expert Therapists</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft-cta">
+  <h2>Your Glow <em>Starts Here</em></h2>
+  <p>Book your first treatment and discover the Velour difference.</p>
+  <a href="tel:02077727475" class="btn-white">020 7772 7475</a>
+</section>
+
+<div class="hours-bar" id="contact">
+  <h3>Opening Hours</h3>
+  <div class="hours-grid">
+    <span><strong>Mon&ndash;Fri</strong> 9am&ndash;8pm</span>
+    <span><strong>Saturday</strong> 9am&ndash;6pm</span>
+    <span><strong>Sunday</strong> 10am&ndash;4pm</span>
+  </div>
+</div>
+
+<footer>
+  <p>Velour Beauty Studio &bull; London<br>
+  <a href="tel:02077727475">020 7772 7475</a> &bull; &copy; 2026 Velour Beauty Studio. All rights reserved.</p>
+</footer>
+</body>
+</html>
